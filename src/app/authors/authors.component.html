@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header pointer" (click)="showBody = !showBody">Authors Component</div>
+    <div class="card-body" *ngIf="showBody">
+        <h2>{{authors.length}} {{title}}</h2>
+        <ul>
+            <li *ngFor="let author of authors">{{author}}</li>
+        </ul>
+        <div (click)="onDiv()">
+            <button class="btn btn-primary" [class.active]="isActive" (click)="onSave($event)">save</button>
+        </div>
+
+        <button class="btn" [style.backgroundColor]="isActive ? 'green' : 'blue'">style</button>
+        <hr>
+        <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
+        <hr>
+        <div class="border border-primary">
+            <span class="badge d-block">{{ event.title | uppercase}}</span>
+            <span class="badge d-block">{{ event.venue | lowercase}}</span>
+            <span class="badge d-block">{{ event.tickets | number}}</span>
+            <span class="badge d-block">{{ event.pricePerTicket | currency:'EUR'}}</span>
+            <span class="badge d-block">{{ event.rating | number:'2.1-2'}}</span>
+            <span class="badge d-block">{{ event.startsOn | date:'MMM, dd yyyy (EEE)'}}</span>
+            <span class="d-block">{{ event.summary | summary:20}}</span>
+        </div>
+    </div>
+</div>
