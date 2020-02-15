@@ -1,0 +1,12 @@
+<div class="card card-width">
+    <div class="card-header" [class.card-heading]="isDropDown" (click)="dropDownClicked()">
+        {{ title }}
+        <i class="fas" [ngClass]="{
+                    'fa-angle-down': !isDropDown,
+                    'fa-angle-up': isDropDown
+                }"></i>
+    </div>
+    <div class="card-body" *ngIf=isDropDown>
+        <ng-content select=".content"></ng-content>
+    </div>
+</div>

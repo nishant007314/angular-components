@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-header pointer" (click)="showBody = !showBody" style="cursor: pointer;">Twitter Component</div>
+    <div class="card-body" *ngIf="showBody">
+        <h2>Twitter like</h2>
+        <hr>
+        <span class="fas fa-heart" [ngClass]="{'liked-color':isLiked, 'not-liked-color':!isLiked}"
+            (click)="likeClicked()">
+        </span>
+        <span> {{ likesCount }}</span>
+    </div>
+</div>
