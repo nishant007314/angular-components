@@ -1,0 +1,170 @@
+<div class="card">
+    <div class="card-header pointer" (click)="showGithub = !showGithub" style="cursor: pointer;">Github Component
+    </div>
+    <div class="card-body" *ngIf="showGithub">
+        <github></github>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showPosts = !showPosts" style="cursor: pointer;">Posts Component
+    </div>
+    <div class="card-body" *ngIf="showPosts">
+        <posts></posts>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showChangePassword = !showChangePassword" style="cursor: pointer;">Change
+        Password Component</div>
+    <div class="card-body" *ngIf="showChangePassword">
+        <change-password></change-password>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showNewCourseForm = !showNewCourseForm" style="cursor: pointer;">New
+        Course Form
+        Component
+    </div>
+    <div class="card-body" *ngIf="showNewCourseForm">
+        <new-course-form></new-course-form>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showSignupForm = !showSignupForm" style="cursor: pointer;">Signup
+        Component
+    </div>
+    <div class="card-body" *ngIf="showSignupForm">
+        <signup-form></signup-form>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showBodyCourse = !showBodyCourse" style="cursor: pointer;">Create
+        Course Component
+    </div>
+    <div class="card-body" *ngIf="showBodyCourse">
+        <create-course></create-course>
+    </div>
+</div>
+<hr>
+<panel>
+    <ng-container class="heading">Heading</ng-container>
+    <ng-container class="body">
+        <h2>Body</h2>
+        <p>this is the body content
+        </p>
+    </ng-container>
+</panel>
+<hr>
+<courses></courses>
+<hr>
+<authors></authors>
+<hr>
+<favourite [is-favorite]="post.isFavorite" (change)="onFavoriteChange($event)"></favourite>
+<hr>
+<!-- twitter likes -->
+<like [likesCount]="twitter.likeCount" [isLiked]="twitter.isLiked"></like>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showBodyNull = !showBodyNull" style="cursor: pointer;">Null Component
+    </div>
+    <div class="card-body" *ngIf="showBodyNull">
+        <div *ngIf="courses.length > 0; then listOfCourses else noCoursesMessage"></div>
+        <ng-template #listOfCourses>
+            List of courses
+        </ng-template>
+        <ng-template #noCoursesMessage>
+            No courses yet
+        </ng-template>
+        <div [hidden]="courses.length == 0">
+            List of courses
+        </div>
+        <div [hidden]="courses.length >0">
+            No courses hidden
+        </div>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showBodyMapList = !showBodyMapList" style="cursor: pointer;">Map-List
+        Component</div>
+    <div class="card-body" *ngIf="showBodyMapList">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Map view</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List view</a>
+            </li>
+        </ul>
+        <div [ngSwitch]="viewMode">
+            <div *ngSwitchCase="'map'">Map view content</div>
+            <div *ngSwitchCase="'list'">List view content</div>
+            <div *ngSwitchDefault>Other view</div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showBodyATP = !showBodyATP" style="cursor: pointer;">ATP Component</div>
+    <div class="card-body" *ngIf="showBodyATP">
+        ATP Rankings
+        <hr>
+        <button (click)="loadRankings()">Load Rankings</button>
+        <div>
+            <ul>
+                <li
+                    *ngFor="let ranking of rankings; even as isEven; first as isFirst;last as isLast; trackBy : trackRankings">
+                    <span [class.color-strip]="isEven">{{ ranking.rank }} | {{ ranking.player}}
+                        <i class="fas" [ngClass]="{'fa-baseball-ball' : isFirst}"></i>
+                        <i class="fas fa-minus-square" (click)="removePlayer(ranking)"></i>
+                        <i class="fas fa-plus-square" (click)="addPlayer()" *ngIf="isLast"></i>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showBodyTask = !showBodyTask" style="cursor: pointer;">Task Component
+    </div>
+    <div class="card-body" *ngIf="showBodyTask">
+        <button [ngStyle]="{
+'backgroundColor': canSave ? 'blue' : 'grey',
+'color' : canSave ? 'white' : 'black'}" (click)="toggleSave()"> Save</button>
+        <hr>
+        <div>{{ task.title }}</div>
+        <div><span *ngIf="task.assignee">
+                Assigned to: {{ task.assignee?.name }}
+            </span></div>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showBodyShip = !showBodyShip" style="cursor: pointer;">Shipping Component
+    </div>
+    <div class="card-body" *ngIf="showBodyShip">
+        Custom Directive
+        <input type="text" [appInputFormat]="'lowercase'">
+        <hr>
+        <zippy title="Shipping Details">
+            <ng-container class="content">Shipping Details Content</ng-container>
+        </zippy>
+        <zippy title="Shipping Bills">
+            <ng-container class="content">Shipping Bills Content</ng-container>
+        </zippy>
+    </div>
+</div>
+<hr>
+<div class="card">
+    <div class="card-header pointer" (click)="showFormComp = !showFormComp" style="cursor: pointer;">Form Component
+    </div>
+    <div class="card-body" *ngIf="showFormComp">
+        <contact-form></contact-form>
+    </div>
+</div>
+<hr>
